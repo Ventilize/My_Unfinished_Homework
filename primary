@@ -222,7 +222,6 @@ void DrawMenu() {
 		getchar();
 		printf("该笔记的类别为:\n(请输入A~F之间的大写字母)\n");
 		yclass = getchar();
-		//scanf("%c", yclass);
 		strcpy(p->mytitle, title);
 		//ShowWindow(GetConsoleWindow(), SW_HIDE);
 		if (yclass >= 'A' && yclass <= 'F') {
@@ -239,8 +238,6 @@ void DrawMenu() {
 			exit(-1);
 		}
 
-		//now->next = p;
-		//p->next = NULL;
 	}
 	if (selection == 3)
 	{
@@ -263,7 +260,6 @@ void DrawMenu() {
 		exit(-1);
 	}
 
-	/*以下为新增功能*/
 }
 
 void display2()        // 用于查看文件
@@ -272,8 +268,7 @@ void display2()        // 用于查看文件
 	{
 		SetFont("宋体");
 		SetPointSize(15);
-		SetStyle(1);//并不理解
-		//以下需要列出多个处理文本的功能
+		SetStyle(1);
 		static char* menuListBack[] = { "返回", "上一级", "退出" };
 
 		setMenuColors("White", "Blue", "White", "black", 1);
