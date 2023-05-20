@@ -78,7 +78,6 @@ void myMouseEvent(int x, int y, int button, int event);
 void display0();         // 用于主界面的display0
 void write_display();         // 用于新建文件
 void display2();         // 用于查看文件
-void Colors();           //自定义一些颜色
 
 /*保存和打开*/
 int FileDialogOpen(char* path);
@@ -308,31 +307,6 @@ void display2()        // 用于查看文件
 	drawClass();//显示当前所有类别,包括默认分类和自定义分类
 }
 
-/*定义新颜色*/
-void Colors() {
-	//参考上一届思维导图的颜色设置
-	/*建议更改*/
-	//枣泥玫瑰
-	DefineColor("Re_1", 0.95, 0.82, 0.85);
-	DefineColor("Re_2", 0.94, 0.65, 0.69);
-	DefineColor("Re_3", 0.94, 0.57, 0.56);
-	DefineColor("Re_4", 0.86, 0.22, 0.33);
-	//普鲁士蓝
-	DefineColor("Bl_1", 0.63, 0.83, 0.85);
-	DefineColor("Bl_2", 0.13, 0.48, 0.73);
-	DefineColor("Bl_3", 0.10, 0.25, 0.40);
-	DefineColor("Bl_4", 0.11, 0.31, 0.48);
-	//柳色青青
-	DefineColor("Gr_1", 0.62, 0.85, 0.78);
-	DefineColor("Gr_2", 0.53, 0.78, 0.66);
-	DefineColor("Gr_3", 0.44, 0.79, 0.6);
-	DefineColor("Gr_4", 0.19, 0.76, 0.65);
-	//黄色系
-	DefineColor("Ye_1", 1.0, 0.87, 0.72);
-	DefineColor("Ye_2", 1.0, 0.84, 0.53);
-	DefineColor("Ye_3", 1.0, 0.89, 0.70);
-	DefineColor("Ye_4", 0.94, 0.78, 0);
-}
 
 void display0()
 {
@@ -419,8 +393,8 @@ void myMouseEvent(int x, int y, int button, int event)
 	mouse_y = ScaleYInches(y);
 	uiGetMouse(x, y, button, event);
 	display0();
-	if (classflag != 0 ) {
-		displayclassAll();  
+	if (classflag != 0) {
+		displayclassAll();
 	}
 	else if (flag == 1) {
 		write_display();
@@ -501,7 +475,7 @@ void myKeyboardEvent(int key, int event)
 			break;
 
 		case VK_RIGHT:
-			if (text[current_line][current_line_length] == '\0') text[current_line][current_line_length + 1] == '\0';
+			if (text[current_line][current_line_length] == '\0') text[current_line][current_line_length + 1] = '\0';
 			current_line_length++;
 		case VK_NEXT:
 		case VK_DOWN:
@@ -644,7 +618,7 @@ void drawClass()
 		SetPenSize(thesize);
 		DisplayClear();
 		classflag = 1;
-		
+
 	}
 	setButtonColors("Green", "Black", "Black", "Black", 0);
 	if (button(GenUIID(1), 0.40 * winwidth, xishushang * winheight, chang, gao, "B"))
@@ -734,15 +708,15 @@ void displayclassA()
 		}
 	}
 
-	
+
 	p = head;
 	int k = 0;
 	while (p)
 	{
-		
+
 		if (p->myclass == 'A')
 		{
-			
+
 			if (button(GenUIID(k), 0.5 + k * 0.5, 1.0, 0.3, 0.4, p->mytitle))
 			{
 				int n = 0;
@@ -806,7 +780,7 @@ void displayclassAll()
 			display2();
 		}
 	}
-	
+
 	if (classflag == 1) {
 		lei = 'A';
 	}
@@ -835,7 +809,7 @@ void displayclassAll()
 		{
 			if (k < 3) {
 
-				if (button(GenUIID(k), 0.1*winwidth + k * 0.2 * winwidth, 0.55*winheight, 1.5, 1.8, p->mytitle))
+				if (button(GenUIID(k), 0.1 * winwidth + k * 0.2 * winwidth, 0.55 * winheight, 1.5, 1.8, p->mytitle))
 				{
 					int n = 0;
 					fp = fopen(p->mytitle, "a + ");
@@ -847,8 +821,8 @@ void displayclassAll()
 					write_display();
 				}
 			}
-			else if( k>= 3 && k<6){
-				if (button(GenUIID(k), 0.1 * winwidth + (k-3) * 0.2 * winwidth, 0.35 * winheight, 1.5, 1.8, p->mytitle))
+			else if (k >= 3 && k < 6) {
+				if (button(GenUIID(k), 0.1 * winwidth + (k - 3) * 0.2 * winwidth, 0.35 * winheight, 1.5, 1.8, p->mytitle))
 				{
 					int n = 0;
 					fp = fopen(p->mytitle, "a + ");
@@ -879,10 +853,3 @@ void displayclassAll()
 	}
 }
 
-/*
-typedef struct  myNote {
-	char* mytitle;  //笔记名字
-	char* myclass;  //笔记类别
-	struct myNote* next;
-}Note;
-*/
